@@ -110,6 +110,7 @@ a.btn {
     margin-right: auto;
     margin-bottom: 25px;
     width: 60%;
+    font-size: 50px;
 
     &.btn-webcam {
       display: none;
@@ -117,6 +118,12 @@ a.btn {
 
     &:last-of-type {
       margin-right: auto;
+    }
+  }
+
+  div.directions {
+    p {
+      font-size: 50px;
     }
   }
 
