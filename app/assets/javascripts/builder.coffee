@@ -108,6 +108,11 @@ window.Builder = React.createClass
     @state.image.remove()
     @setState(step: 'CHOOSE_METHOD')
 
+  done: (event) ->
+    event.preventDefault()
+    $.post '/', { image: { file: @state.canvas.toDataURL() } }, (response) ->
+      console.log response
+
   render: ->
     directions = switch @state.step
       when 'CHOOSE_METHOD' then <p>First, select your image!</p>
@@ -126,7 +131,7 @@ window.Builder = React.createClass
       when 'DRAG_ZOOM'
         <div>
           <a href='#' className={'btn'} onClick={@backToImport}>Use Different Image</a>
-          <a href='#' className={'btn'}>Looks Good</a>
+          <a href='#' className={'btn'} onClick={@done}>Looks Good</a>
         </div>
       when 'CHOOSE_FACEBOOK'
         <div>

@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'react-rails'
 gem 'sprockets-coffee-react'
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-fabric'
