@@ -45,6 +45,30 @@ div#webcam {
   margin-right: auto;
 }
 
+div.gallery {
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+
+  div.photo-wrapper {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+
+    img {
+      max-height: 140px;
+      max-width: 140px;
+      padding: 5px;
+      margin: auto;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 a.btn {
   background-color: $orange;
   color: white;

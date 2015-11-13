@@ -2,6 +2,7 @@ window.Builder = React.createClass
   getInitialState: ->
     {
       step: 'CHOOSE_METHOD'
+      photos: []
     }
 
   componentDidMount: ->
@@ -58,6 +59,19 @@ window.Builder = React.createClass
     event.preventDefault()
     @setState(step: 'TAKE_WEBCAM')
 
+  importFacebook: (event) ->
+    event.preventDefault()
+    FB.getLoginStatus (response) =>
+      if response.status is 'connected'
+        @processFacebook()
+      else
+        FB.login (response) =>
+          if response.status is 'connected'
+            @processFacebook()
+          else
+            alert 'You must allow Facebook access to import a photo.' 
+        , { scope: 'user_photos' }
+
   processUpload: (event) ->
     reader = new FileReader()
     reader.onload = (event) =>
@@ -70,6 +84,24 @@ window.Builder = React.createClass
       @addFromUrl(url)
       Webcam.reset()
 
+  processFacebook: ->
+    FB.api '/me/photos', { fields: 'images' }, (response) =>
+      @setState(step: 'CHOOSE_FACEBOOK', photos: response.data, next: response.paging.next)
+
+  processMorePhotos: (event) ->
+    event.preventDefault()
+    if @state.next
+      $.getJSON @state.next, (response) =>
+        @setState(photos: response.data, next: response.paging.next)
+    else
+      alert "Facebook says there aren't any more photos!"
+
+  processChooseFacebook: (event) ->
+    id = $(event.target).data('id')
+    photo = @state.photos.find (photo) ->
+      parseInt(photo.id) is id
+    @addFromUrl(photo.images[0]['source'])
+
   backToImport: (event) ->
     event.preventDefault()
     @state.image.remove()
@@ -80,6 +112,7 @@ window.Builder = React.createClass
       when 'CHOOSE_METHOD' then <p>First, select your image!</p>
       when 'DRAG_ZOOM' then <p>Next, drag and zoom to fit!</p>
       when 'TAKE_WEBCAM' then <p>Snap that selfie!</p>
+      when 'CHOOSE_FACEBOOK' then <p>Click an image to import it.</p>
 
     buttons = switch @state.step
       when 'CHOOSE_METHOD'
@@ -94,13 +127,25 @@ window.Builder = React.createClass
           <a href='#' className={'btn'} onClick={@backToImport}>Use Different Image</a>
           <a href='#' className={'btn'}>Looks Good</a>
         </div>
+      when 'CHOOSE_FACEBOOK'
+        <div>
+          <a href='#' className={'btn'} onClick={@backToImport}>Back</a>
+          <a href='#' className={'btn'} onClick={@processMorePhotos}>Load More Photos</a>
+        </div>
       when 'TAKE_WEBCAM' then <a href='#' className={'btn'} onClick={@processWebcam}>Take Picture</a>
 
     return (
       <div>
         <div id='webcam' className={'hidden' unless @state.step == 'TAKE_WEBCAM'}></div>
-        <div className={'hidden' if @state.step == 'TAKE_WEBCAM'}>
+        <div className={'hidden' if @state.step == 'TAKE_WEBCAM' || @state.step == 'CHOOSE_FACEBOOK'}>
           <canvas id='canvas' width='500' height='500'></canvas>
+        </div>
+        <div className={"gallery #{'hidden' unless @state.step == 'CHOOSE_FACEBOOK'}"}>
+          {for photo in @state.photos
+            <div className={'photo-wrapper'}>
+              <img src={photo.images[photo.images.length - 1]['source']} data-id={photo.id} onClick={@processChooseFacebook} />
+            </div>
+          }
         </div>
         <div className={"slider-wrapper #{'hidden' unless @state.step == 'DRAG_ZOOM'}"}>
           <div id='slider'></div>
