@@ -114,6 +114,7 @@ window.Builder = React.createClass
     id = $(event.target).data('id')
     photo = @state.photos.find (photo) ->
       parseInt(photo.id) is id
+    @setState(step: 'IMPORTING_FACEBOOK')
     @addFromUrl(photo.images[0]['source'])
 
   backToImport: (event) ->
@@ -138,6 +139,7 @@ window.Builder = React.createClass
       when 'DRAG_ZOOM' then <p>Next, drag and zoom to fit!</p>
       when 'TAKE_WEBCAM' then <p>Snap that selfie!</p>
       when 'CHOOSE_FACEBOOK' then <p>Click an image to import it.</p>
+      when 'IMPORTING_FACEBOOK' then <p>Importing from Facebook - just a moment.</p>
       when 'UPLOADING' then <p>Uploading your image! Sit tight, this may take a moment.</p>
 
     buttons = switch @state.step
