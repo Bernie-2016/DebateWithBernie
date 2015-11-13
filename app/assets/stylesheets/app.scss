@@ -1,0 +1,63 @@
+$orange: #F55B5B;
+$lightorange: #EA504E;
+$blue: #147FD7;
+
+body {
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+  padding-top: 5%;
+}
+
+img.bernie {
+  margin-bottom: 30px;
+}
+
+div.canvas-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+div.slider-wrapper {
+  width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+div.directions {
+  p {
+    font-family: 'Freight Sans Book';
+    padding: 10px;
+    font-size: 30px;
+    color: $blue;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+a.btn {
+  background-color: $orange;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  height: 45px;
+  font-size: 1.2em;
+  font-family: 'Freight Sans Book';
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: .15em;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 0;
+  padding: 15px;
+
+  &:hover {
+    background-color: $lightorange;
+  }
+}
+
+.hidden {
+  display: none;
+}
