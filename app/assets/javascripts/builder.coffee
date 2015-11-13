@@ -50,6 +50,7 @@ window.Builder = React.createClass
         scale: scale
         step: 'DRAG_ZOOM'
       )
+    , { crossOrigin: true }
 
   importUpload: (event) ->
     event.preventDefault()
