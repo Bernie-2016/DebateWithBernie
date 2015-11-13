@@ -34,11 +34,12 @@ window.Builder = React.createClass
     fabric.Image.fromURL '/images/outline.png', (img) =>
       img.scale(0.8)
       img.set({left: 50, top: 75, evented: false})
+      img.setControlsVisibility(bl: false, br: false, mb: false, ml: false, mr: false, mt: false, tl: false, tr: false, mtr: false)
       @state.canvas.add(img)
       @state.canvas.sendToBack(img)
       @setState(outline: img)
 
-  addFromUrl: (url) ->
+  addFromUrl: (url, exif = null) ->
     @state.outline.remove()
 
     fabric.Image.fromURL url, (img) =>
@@ -49,6 +50,13 @@ window.Builder = React.createClass
       # Scale image to 500px
       scale = 500 / img.getBoundingRect().width
       img.scale(scale)
+
+      # Fix EXIF if necessary.
+      if exif
+        switch exif.Orientation
+          when 8 then img.setAngle(90 * Math.PI / 180)
+          when 3 then img.setAngle(180 * Math.PI / 180)
+          when 6 then img.setAngle(-90 * Math.PI / 180)
 
       # Hide the grab handles
       img.setControlsVisibility(bl: false, br: false, mb: false, ml: false, mr: false, mt: false, tl: false, tr: false, mtr: false)
@@ -89,7 +97,7 @@ window.Builder = React.createClass
   processUpload: (event) ->
     reader = new FileReader()
     reader.onload = (event) =>
-      @addFromUrl(event.target.result)
+      @addFromUrl(event.target.result, EXIF.readFromBinaryFile(new BinaryFile(event.target.result)))
     reader.readAsDataURL(event.target.files[0])
 
   processWebcam: (event) ->
