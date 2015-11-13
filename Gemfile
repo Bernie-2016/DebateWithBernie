@@ -13,6 +13,7 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-exif-js'
   gem 'rails-assets-fabric'
   gem 'rails-assets-webcamjs'
 end

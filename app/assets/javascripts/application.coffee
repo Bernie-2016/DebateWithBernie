@@ -3,6 +3,7 @@
 #= require jquery-ui
 #= require react
 #= require react_ujs
+#= require exif-js
 #= require fabric
 #= require webcamjs
 #= require builder

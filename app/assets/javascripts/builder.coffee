@@ -97,7 +97,18 @@ window.Builder = React.createClass
   processUpload: (event) ->
     reader = new FileReader()
     reader.onload = (event) =>
-      @addFromUrl(event.target.result, EXIF.readFromBinaryFile(new BinaryFile(event.target.result)))
+      base64ToArrayBuffer = (base64) ->
+        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gmi, '')
+        binary_string = window.atob(base64)
+        len = binary_string.length
+        bytes = new Uint8Array(len)
+        i = 0
+        while i < len
+          bytes[i] = binary_string.charCodeAt(i)
+          i++
+        bytes.buffer
+
+      @addFromUrl(event.target.result, EXIF.readFromBinaryFile(base64ToArrayBuffer(event.target.result)))
     reader.readAsDataURL(event.target.files[0])
 
   processWebcam: (event) ->
