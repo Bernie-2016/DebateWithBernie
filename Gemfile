@@ -10,6 +10,7 @@ gem 'jquery-ui-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-fabric'
+  gem 'rails-assets-webcamjs'
 end
 
 group :development, :test do

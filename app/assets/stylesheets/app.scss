@@ -38,6 +38,13 @@ div.directions {
   }
 }
 
+div#webcam {
+  height: 500px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 a.btn {
   background-color: $orange;
   color: white;

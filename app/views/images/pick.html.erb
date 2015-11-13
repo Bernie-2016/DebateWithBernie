@@ -1,3 +1,4 @@
+<div id='webcam'></div>
 <canvas id='canvas' width='500' height='500'></canvas>
 <br />
 <div class='slider-wrapper'>
@@ -6,13 +7,17 @@
 <div class='directions'>
   <p class='step-one'>First, select your image!</p>
   <p class='step-two'>Next, drag and zoom to fit!</p>
+  <p class='webcam'>Snap that selfie!</p>
 </div>
 <div class='select-image'>
   <%= link_to 'Upload Image', '#', id: 'upload', class: 'btn' %>
-  <%= link_to 'Take With Webcam', '#', id: 'webcam', class: 'btn' %>
+  <%= link_to 'Take With Webcam', '#', id: 'take-webcam', class: 'btn' %>
   <%= link_to 'Import From Facebook', '#', id: 'facebook', class: 'btn' %>
   <input type='file' id='image-picker' class='hidden' />
 </div>
 <div class='looks-good'>
   <%= link_to 'Looks Good!', '#', id: 'looks-good', class: 'btn' %>
+</div>
+<div class='select-webcam'>
+  <%= link_to 'Take Picture', '#', id: 'take-picture', class: 'btn' %>
 </div>

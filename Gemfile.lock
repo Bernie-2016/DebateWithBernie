@@ -91,6 +91,7 @@ GEM
       railties (= 4.2.4)
       sprockets-rails
     rails-assets-fabric (1.5.0)
+    rails-assets-webcamjs (1.0.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -151,6 +152,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.4)
   rails-assets-fabric!
+  rails-assets-webcamjs!
   rails_12factor
   sass-rails (~> 5.0)
   spring
