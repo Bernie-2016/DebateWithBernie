@@ -13,6 +13,9 @@ window.Builder = React.createClass
       canvas.add(img)
       img.set('evented', false)
 
+    @setState(canvas: canvas)
+    @addOutline()
+
     $('#slider').slider
       slide: (event, ui) =>
         minScale = @state.scale
@@ -20,15 +23,24 @@ window.Builder = React.createClass
         @state.image.scale((ui.value / 100) * range + minScale)
         @state.image.applyFilters(@state.canvas.renderAll.bind(@state.canvas))
 
-    @setState(canvas: canvas)
-
   componentDidUpdate: ->
     if @state.step == 'TAKE_WEBCAM'
       Webcam.set(width: 500, height: 375)
       Webcam.setSWFLocation('/flash/webcam.swf')
       Webcam.attach('#webcam')
 
+  addOutline: ->
+    fabric.Image.fromURL '/images/outline.png', (img) =>
+      img.scale(0.8)
+      img.set({left: 50, top: 75})
+      @state.canvas.add(img)
+      @state.canvas.sendToBack(img)
+      img.set('evented', false)
+      @setState(outline: img)
+
   addFromUrl: (url) ->
+    @state.outline.remove()
+
     fabric.Image.fromURL url, (img) =>
       # Make image grayscale
       img.filters.push(new fabric.Image.filters.Grayscale())
@@ -46,6 +58,7 @@ window.Builder = React.createClass
       @state.canvas.sendToBack(img)
 
       @setState(
+        outline: null
         image: img
         scale: scale
         step: 'DRAG_ZOOM'
@@ -106,6 +119,7 @@ window.Builder = React.createClass
   backToImport: (event) ->
     event.preventDefault()
     @state.image.remove()
+    @addOutline()
     @setState(step: 'CHOOSE_METHOD')
 
   done: (event) ->
