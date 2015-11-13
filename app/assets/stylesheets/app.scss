@@ -103,6 +103,10 @@ a.btn {
   display: none;
 }
 
+span.or-take {
+  display: none;
+}
+
 @media only screen and (max-device-width: 775px) {
   a.btn {
     display: block;
@@ -136,5 +140,9 @@ a.btn {
         max-width: 240px;
       }
     }
+  }
+
+  span.or-take {
+    display: inline;
   }
 }

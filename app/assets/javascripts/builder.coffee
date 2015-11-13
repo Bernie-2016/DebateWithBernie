@@ -157,7 +157,7 @@ window.Builder = React.createClass
     buttons = switch @state.step
       when 'CHOOSE_METHOD'
         <div>
-          <a href='#' className={'btn'} onClick={@importUpload}>Upload Image</a>
+          <a href='#' className={'btn'} onClick={@importUpload}>Upload <span className={'or-take'}>or Take an</span> Image</a>
           <a href='#' className={'btn btn-webcam'} onClick={@importWebcam}>Take With Webcam</a>
           <a href='#' className={'btn'} onClick={@importFacebook}>Import From Facebook</a>
           <input type='file' id='image-picker' className={'hidden'} onChange={@processUpload} />
