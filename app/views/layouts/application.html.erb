@@ -5,6 +5,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta property='og:title' content='#DebateWithBernie' />
+    <% if @image %>
+      <meta property='og:image' content='<%= @image.file.url %>' />
+      <meta property='og:url' content='<%= image_url(@image.id) %>' />
+      <meta property='og:description' content='I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie.' />
+    <% else %>
+      <meta property='og:description' content='Make your image to #DebateWithBernie!' />
+    <% end %>
   </head>
   <body>
     <script>
