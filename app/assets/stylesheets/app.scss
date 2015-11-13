@@ -103,7 +103,10 @@ a.btn {
   display: none;
 }
 
-@media screen and (max-width: 775px) {
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (max-device-width: 775px) {
   a.btn {
     display: block;
     margin-left: auto;
