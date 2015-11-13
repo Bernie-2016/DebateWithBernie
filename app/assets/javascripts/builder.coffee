@@ -95,20 +95,22 @@ window.Builder = React.createClass
         , { scope: 'user_photos' }
 
   processUpload: (event) ->
+    file = event.target.files[0]
     reader = new FileReader()
     reader.onload = (event) =>
-      base64ToArrayBuffer = (base64) ->
-        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gmi, '')
-        binary_string = window.atob(base64)
-        len = binary_string.length
-        bytes = new Uint8Array(len)
-        i = 0
-        while i < len
-          bytes[i] = binary_string.charCodeAt(i)
-          i++
-        bytes.buffer
+      dataUrl = event.target.result
+      self = @
 
-      @addFromUrl(event.target.result, EXIF.readFromBinaryFile(base64ToArrayBuffer(event.target.result)))
+      bReader = new FileReader
+      bReader.onloadend = ->
+        buf = new ArrayBuffer(@result.length * 2)
+        bufView = new Uint16Array(buf)
+        i = 0
+        while i < @result.length
+          bufView[i] = @result.charCodeAt(i)
+          i++
+        self.addFromUrl(dataUrl, EXIF.readFromBinaryFile(buf))
+      bReader.readAsBinaryString(file)
     reader.readAsDataURL(event.target.files[0])
 
   processWebcam: (event) ->
