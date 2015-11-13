@@ -68,6 +68,11 @@ window.Builder = React.createClass
       @addFromUrl(url)
       Webcam.reset()
 
+  backToImport: (event) ->
+    event.preventDefault()
+    @state.image.remove()
+    @setState(step: 'CHOOSE_METHOD')
+
   render: ->
     directions = switch @state.step
       when 'CHOOSE_METHOD' then <p>First, select your image!</p>
@@ -82,7 +87,11 @@ window.Builder = React.createClass
           <a href='#' className={'btn'} onClick={@importFacebook}>Import From Facebook</a>
           <input type='file' id='image-picker' className={'hidden'} onChange={@processUpload} />
         </div>
-      when 'DRAG_ZOOM' then <a href='#' className={'btn'}>Looks Good</a>
+      when 'DRAG_ZOOM'
+        <div>
+          <a href='#' className={'btn'} onClick={@backToImport}>Use Different Image</a>
+          <a href='#' className={'btn'}>Looks Good</a>
+        </div>
       when 'TAKE_WEBCAM' then <a href='#' className={'btn'} onClick={@processWebcam}>Take Picture</a>
 
     return (
