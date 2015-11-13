@@ -8,10 +8,11 @@ window.Builder = React.createClass
   componentDidMount: ->
     # Initialize canvas with template.
     canvas = new fabric.Canvas('canvas')
+    canvas.selection = false
     
     fabric.Image.fromURL '/images/template.png', (img) ->
       canvas.add(img)
-      img.set(selection: false, evented: false)
+      img.set(evented: false)
 
     @setState(canvas: canvas)
     @addOutline()
@@ -32,7 +33,7 @@ window.Builder = React.createClass
   addOutline: ->
     fabric.Image.fromURL '/images/outline.png', (img) =>
       img.scale(0.8)
-      img.set({left: 50, top: 75, selection: false, evented: false})
+      img.set({left: 50, top: 75, evented: false})
       @state.canvas.add(img)
       @state.canvas.sendToBack(img)
       @setState(outline: img)
