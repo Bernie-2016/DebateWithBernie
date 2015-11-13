@@ -118,7 +118,7 @@ window.Builder = React.createClass
 
   backToImport: (event) ->
     event.preventDefault()
-    @state.image.remove()
+    @state.image.remove() if @state.image
     @addOutline()
     @setState(step: 'CHOOSE_METHOD')
 
