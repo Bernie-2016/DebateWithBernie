@@ -110,9 +110,11 @@ window.Builder = React.createClass
 
   done: (event) ->
     event.preventDefault()
+    @setState(step: 'UPLOADING')
     $.post '/', { image: { file: @state.canvas.toDataURL() } }, (response) ->
       if response.error
         alert 'An error occurred; please try again.'
+        @setState(step: 'DRAG_ZOOM')
       else
         window.location.href = "/images/#{response.id}"
 
@@ -122,6 +124,7 @@ window.Builder = React.createClass
       when 'DRAG_ZOOM' then <p>Next, drag and zoom to fit!</p>
       when 'TAKE_WEBCAM' then <p>Snap that selfie!</p>
       when 'CHOOSE_FACEBOOK' then <p>Click an image to import it.</p>
+      when 'UPLOADING' then <p>Uploading your image! Sit tight, this may take a moment.</p>
 
     buttons = switch @state.step
       when 'CHOOSE_METHOD'
