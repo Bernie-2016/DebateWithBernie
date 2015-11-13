@@ -32,7 +32,7 @@ window.Builder = React.createClass
   addOutline: ->
     fabric.Image.fromURL '/images/outline.png', (img) =>
       img.scale(0.8)
-      img.set({left: 50, top: 75})
+      img.set({left: 50, top: 75, evented: false})
       @state.canvas.add(img)
       @state.canvas.sendToBack(img)
       img.set('evented', false)
