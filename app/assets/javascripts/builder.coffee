@@ -111,7 +111,10 @@ window.Builder = React.createClass
   done: (event) ->
     event.preventDefault()
     $.post '/', { image: { file: @state.canvas.toDataURL() } }, (response) ->
-      console.log response
+      if response.error
+        alert 'An error occurred; please try again.'
+      else
+        window.location.href = "/images/#{response.id}"
 
   render: ->
     directions = switch @state.step
