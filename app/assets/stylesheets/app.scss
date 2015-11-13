@@ -123,4 +123,18 @@ a.btn {
   div.share-btns {
     margin-bottom: 25px;
   }
+
+  div.gallery {
+    width: 500px;
+
+    div.photo-wrapper {
+      height: 250px;
+      width: 250px;
+
+      img {
+        max-height: 240px;
+        max-width: 240px;
+      }
+    }
+  }
 }
