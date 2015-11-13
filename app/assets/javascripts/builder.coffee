@@ -54,9 +54,9 @@ window.Builder = React.createClass
       # Fix EXIF if necessary.
       if exif
         switch exif.Orientation
-          when 8 then img.setAngle(90 * Math.PI / 180)
-          when 3 then img.setAngle(180 * Math.PI / 180)
-          when 6 then img.setAngle(-90 * Math.PI / 180)
+          when 8 then img.setAngle(270)
+          when 3 then img.setAngle(180)
+          when 6 then img.setAngle(90)
 
       # Hide the grab handles
       img.setControlsVisibility(bl: false, br: false, mb: false, ml: false, mr: false, mt: false, tl: false, tr: false, mtr: false)
@@ -96,22 +96,13 @@ window.Builder = React.createClass
 
   processUpload: (event) ->
     file = event.target.files[0]
-    reader = new FileReader()
-    reader.onload = (event) =>
-      dataUrl = event.target.result
-      self = @
-
-      bReader = new FileReader
-      bReader.onloadend = ->
-        buf = new ArrayBuffer(@result.length * 2)
-        bufView = new Uint16Array(buf)
-        i = 0
-        while i < @result.length
-          bufView[i] = @result.charCodeAt(i)
-          i++
-        self.addFromUrl(dataUrl, EXIF.readFromBinaryFile(buf))
-      bReader.readAsBinaryString(file)
-    reader.readAsDataURL(event.target.files[0])
+    self = @
+    EXIF.getData file, ->
+      exif = @
+      reader = new FileReader()
+      reader.onload = (event) ->
+        self.addFromUrl(event.target.result, exif.exifdata)
+      reader.readAsDataURL(file)
 
   processWebcam: (event) ->
     event.preventDefault()
