@@ -102,3 +102,25 @@ a.btn {
 .hidden {
   display: none;
 }
+
+@media screen and (max-width: 775px) {
+  a.btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    width: 60%;
+
+    &.btn-webcam {
+      display: none;
+    }
+
+    &:last-of-type {
+      margin-right: auto;
+    }
+  }
+
+  div.share-btns {
+    margin-bottom: 25px;
+  }
+}

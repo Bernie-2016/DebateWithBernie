@@ -144,7 +144,7 @@ window.Builder = React.createClass
       when 'CHOOSE_METHOD'
         <div>
           <a href='#' className={'btn'} onClick={@importUpload}>Upload Image</a>
-          <a href='#' className={'btn'} onClick={@importWebcam}>Take With Webcam</a>
+          <a href='#' className={'btn btn-webcam'} onClick={@importWebcam}>Take With Webcam</a>
           <a href='#' className={'btn'} onClick={@importFacebook}>Import From Facebook</a>
           <input type='file' id='image-picker' className={'hidden'} onChange={@processUpload} />
         </div>
