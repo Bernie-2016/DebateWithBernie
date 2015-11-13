@@ -23,6 +23,8 @@ window.Builder = React.createClass
 
   componentDidUpdate: ->
     if @state.step == 'TAKE_WEBCAM'
+      Webcam.set(width: 500, height: 375)
+      Webcam.setSWFLocation('/flash/webcam.swf')
       Webcam.attach('#webcam')
 
   addFromUrl: (url) ->
