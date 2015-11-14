@@ -127,14 +127,14 @@ window.Builder = React.createClass
   processChooseFacebook: (event) ->
     id = $(event.target).data('id')
     photo = @state.photos.find (photo) ->
-      parseInt(photo.id) is id
+      photo.id is id.toString()
     @setState(step: 'IMPORTING_FACEBOOK')
     @addFromUrl(photo.images[0]['source'])
 
   backToImport: (event) ->
     event.preventDefault()
     @state.image.remove() if @state.image
-    @addOutline()
+    @addOutline() unless @state.outline
     @setState(step: 'CHOOSE_METHOD')
 
   done: (event) ->
