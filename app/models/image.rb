@@ -1,4 +1,4 @@
 class Image < ActiveRecord::Base
-  do_not_validate_attachment_file_type :file
   has_attached_file :file
+  validates_attachment_content_type :file, content_type: ['image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/gif']
 end
