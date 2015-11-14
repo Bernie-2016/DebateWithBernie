@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Set URL host.
+  config.action_controller.default_url_options = { host: 'debatewith.berniesanders.com' }
 end
