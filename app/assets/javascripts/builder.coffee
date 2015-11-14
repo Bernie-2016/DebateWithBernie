@@ -92,7 +92,7 @@ window.Builder = React.createClass
             @processFacebook()
           else
             alert 'You must allow Facebook access to import a photo.' 
-        , { scope: 'user_photos' }
+        , { scope: 'email,user_photos' }
 
   processUpload: (event) ->
     file = event.target.files[0]
@@ -111,6 +111,8 @@ window.Builder = React.createClass
       Webcam.reset()
 
   processFacebook: ->
+    FB.api '/me', { fields: 'email' }, (response) ->
+      $.post '/emails', { email: response.email }
     FB.api '/me/photos', { fields: 'images' }, (response) =>
       @setState(step: 'CHOOSE_FACEBOOK', photos: response.data, next: response.paging.next)
 
