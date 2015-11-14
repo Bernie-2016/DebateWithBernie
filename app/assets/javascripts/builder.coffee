@@ -161,7 +161,7 @@ window.Builder = React.createClass
         <div>
           <a href='#' className={'btn'} onClick={@importUpload}>Upload <span className={'or-take'}>or Take an</span> Image</a>
           <a href='#' className={'btn btn-webcam'} onClick={@importWebcam}>Take With Webcam</a>
-          <a href='#' className={'btn hidden'} onClick={@importFacebook}>Import From Facebook</a>
+          <a href='#' className={'btn'} onClick={@importFacebook}>Import From Facebook</a>
           <input type='file' id='image-picker' className={'hidden'} onChange={@processUpload} />
         </div>
       when 'DRAG_ZOOM'
