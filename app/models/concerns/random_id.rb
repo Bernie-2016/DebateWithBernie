@@ -5,18 +5,6 @@ module Concerns
     included do
       before_create :generate_random_id
 
-      #
-      # IDs are designed to be able to be allocated independently by
-      # different systems, and also to maintain sort order based on
-      # created time. The format is:
-      #
-      #    timestamp(32 bits) | system (8-bits) | random (24-bits)
-      #
-      # timestamp is seconds since unix epoch
-      # system is the system that generated the ID. 0 = browser, 128 = primary
-      # app server, 129 = secondary app server, etc. random is 24 random bits
-      # to allow multiple records to be created per second.
-      #
       def generate_random_id
         self.id = SecureRandom.random_number(2**24)
         self.id = SecureRandom.random_number(2**24) while self.class.where(id: id).exists?
@@ -45,5 +33,5 @@ class Numeric
     else
       self
     end
-  end #:nodoc:
+  end
 end
