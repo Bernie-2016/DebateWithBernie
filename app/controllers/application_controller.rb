@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_if_heroku!
-    if request.host == 'debate-with-bernie.herokuapp.com' || request.protocol == 'http'
-      redirect_to "https://debatewith.berniesanders.com#{request.fullpath}"
-    end
+    return unless Rails.env.production?
+    redirect_to "https://debatewith.berniesanders.com#{request.fullpath}" if request.host == 'debate-with-bernie.herokuapp.com' || request.protocol == 'http://'
   end
 end
