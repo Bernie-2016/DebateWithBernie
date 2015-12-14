@@ -18,8 +18,3 @@ Make your own #DebateWithBernie image.
 FACEBOOK_KEY=key
 FACEBOOK_SECRET=secret
 ```
-
-## Testing
-
-* `bundle exec rspec` for integration tests
-* `bundle exec rubocop` for linting
