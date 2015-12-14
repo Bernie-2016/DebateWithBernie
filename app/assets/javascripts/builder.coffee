@@ -113,8 +113,19 @@ window.Builder = React.createClass
   processFacebook: ->
     FB.api '/me', { fields: 'email' }, (response) ->
       $.post '/emails', { email: response.email }
-    FB.api '/me/photos', { fields: 'images' }, (response) =>
-      @setState(step: 'CHOOSE_FACEBOOK', photos: response.data, next: response.paging.next)
+    FB.api '/me/albums', { fields: 'id,name,type' }, (response) =>
+      profileAlbumId = null
+      while profileAlbumId is null
+        if response
+          for album in response.data
+            profileAlbumId = album.id if album.name is 'Profile Pictures' && album.type is 'profile'
+          if profileAlbumId
+            FB.api "/#{profileAlbumId}/photos", { fields: 'images' }, (r) =>
+              @setState(step: 'CHOOSE_FACEBOOK', photos: r.data, next: r.paging.next)
+          else
+            $.getJSON response.paging.next, (r) -> 
+              response = r
+            response = null
 
   processMorePhotos: (event) ->
     event.preventDefault()
