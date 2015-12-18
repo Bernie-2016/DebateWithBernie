@@ -10,7 +10,7 @@
     <meta property='og:title' content='#DebateWithBernie' />
     <% if @image %>
       <meta property='og:image' content='<%= @image.file.url %>' />
-      <meta property='og:url' content='<%= image_url(@image.id) %>' />
+      <meta property='og:url' content='<%= image_share_url(@image.id) %>' />
       <meta property='og:description' content='I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie.' />
       <meta name='twitter:card' content='summary_large_image'>
       <meta name='twitter:site' content='@berniesanders'>

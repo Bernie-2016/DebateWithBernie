@@ -12,6 +12,10 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+  def public
+    @image = Image.find(params[:id])
+  end
+
   def download
     image = Image.find(params[:image_id])
     send_data open(image.file.url) { |f| f.read }, filename: 'debatewithbernie.png'
