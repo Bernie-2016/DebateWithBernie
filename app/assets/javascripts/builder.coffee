@@ -25,7 +25,7 @@ window.Builder = React.createClass
         @state.image.applyFilters(@state.canvas.renderAll.bind(@state.canvas))
 
   componentDidUpdate: ->
-    if @state.step == 'TAKE_WEBCAM'
+    if @state.step is 'TAKE_WEBCAM'
       Webcam.set(width: 500, height: 375)
       Webcam.setSWFLocation('/flash/webcam.swf')
       Webcam.attach('#webcam')
@@ -111,8 +111,6 @@ window.Builder = React.createClass
       Webcam.reset()
 
   processFacebook: ->
-    FB.api '/me', { fields: 'email' }, (response) ->
-      $.post '/emails', { email: response.email }
     FB.api '/me/albums', { fields: 'id,name,type' }, (response) =>
       profileAlbumId = null
       while profileAlbumId is null
@@ -189,18 +187,18 @@ window.Builder = React.createClass
 
     return (
       <div>
-        <div id='webcam' className={'hidden' unless @state.step == 'TAKE_WEBCAM'}></div>
-        <div className={'hidden' if @state.step == 'TAKE_WEBCAM' || @state.step == 'CHOOSE_FACEBOOK'}>
+        <div id='webcam' className={'hidden' unless @state.step is 'TAKE_WEBCAM'}></div>
+        <div className={'hidden' if @state.step is 'TAKE_WEBCAM' || @state.step is 'CHOOSE_FACEBOOK'}>
           <canvas id='canvas' width='500' height='500'></canvas>
         </div>
-        <div className={"gallery #{'hidden' unless @state.step == 'CHOOSE_FACEBOOK'}"}>
+        <div className={"gallery #{'hidden' unless @state.step is 'CHOOSE_FACEBOOK'}"}>
           {for photo in @state.photos
             <div className={'photo-wrapper'}>
               <img src={photo.images[photo.images.length - 1]['source']} data-id={photo.id} onClick={@processChooseFacebook} />
             </div>
           }
         </div>
-        <div className={"slider-wrapper #{'hidden' unless @state.step == 'DRAG_ZOOM'}"}>
+        <div className={"slider-wrapper #{'hidden' unless @state.step is 'DRAG_ZOOM'}"}>
           <div id='slider'></div>
         </div>
         <div className={'directions'}>

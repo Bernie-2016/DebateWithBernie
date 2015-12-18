@@ -6,5 +6,4 @@ Rails.application.routes.draw do
   resources :images, only: [:show] do
     get :download
   end
-  resources :emails, only: [:create]
 end
