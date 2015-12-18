@@ -5,4 +5,3 @@
   <%= link_to 'Share on Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{image_share_url(@image.id)}", target: '_blank', class: 'btn' %>
   <%= link_to 'Share on Twitter', "https://twitter.com/intent/tweet?text=#{URI::encode('I created a picture to support @berniesanders at the debate! Make yours to #DebateWithBernie: ' + image_share_url(@image.id))}", target: '_blank', class: 'btn' %>
 </div>
-<%= link_to 'Make Your Own', make_path, class: 'btn' %>
