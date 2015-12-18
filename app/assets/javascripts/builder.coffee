@@ -163,7 +163,7 @@ window.Builder = React.createClass
       when 'TAKE_WEBCAM' then <p>Snap that selfie!</p>
       when 'CHOOSE_FACEBOOK' then <p>Click an image to import it.</p>
       when 'IMPORTING_FACEBOOK' then <p>Importing from Facebook - just a moment.</p>
-      when 'UPLOADING' then <p>Uploading your image! Sit tight, this may take a moment.</p>
+      when 'UPLOADING' then <p>Creating your image! Sit tight, this may take a moment.</p>
 
     buttons = switch @state.step
       when 'CHOOSE_METHOD'
