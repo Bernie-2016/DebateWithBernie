@@ -37,4 +37,6 @@ group :production do
   gem 'passenger'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
+  gem 'oj'
+  gem 'rollbar'
 end
