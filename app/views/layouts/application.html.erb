@@ -18,9 +18,9 @@
       <meta property='og:description' content='I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie.' />
       <meta name='twitter:image' content='<%= @image.file.url %>'>
     <% else %>
-      <meta property='og:image' content='<%= asset_url('bernie.png') %>' />
+      <meta property='og:image' content='<%= asset_url('/images/bernie.png') %>' />
       <meta property='og:description' content='Make your image to #DebateWithBernie!' />
-      <meta name='twitter:image' content='<%= asset_url('bernie.png') %>' />
+      <meta name='twitter:image' content='<%= asset_url('/images/bernie.png') %>' />
     <% end %>
   </head>
   <body>

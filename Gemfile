@@ -12,6 +12,8 @@ gem 'rest-client'
 gem 'sprockets-coffee-react'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'oj'
+gem 'rollbar'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-exif-js'
@@ -37,6 +39,4 @@ group :production do
   gem 'passenger'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
-  gem 'oj'
-  gem 'rollbar'
 end
