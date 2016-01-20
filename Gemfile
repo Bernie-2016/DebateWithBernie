@@ -12,6 +12,7 @@ gem 'rest-client'
 gem 'sprockets-coffee-react'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'gaffe'
 gem 'oj'
 gem 'rollbar'
 

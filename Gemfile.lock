@@ -73,6 +73,8 @@ GEM
       dotenv (= 2.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    gaffe (1.0.2)
+      rails (>= 3.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     http-cookie (1.0.2)
@@ -202,6 +204,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  gaffe
   jquery-rails
   jquery-ui-rails
   newrelic_rpm
