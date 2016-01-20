@@ -1,20 +1,21 @@
 source 'https://rubygems.org'
+ruby '2.2.3'
 
-gem 'rails', '4.2.4'
-gem 'pg'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'aws-sdk', '< 2.0'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'gaffe'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'oj'
+gem 'paperclip'
+gem 'pg'
+gem 'rails', '4.2.4'
 gem 'react-rails'
 gem 'rest-client'
-gem 'sprockets-coffee-react'
-gem 'paperclip'
-gem 'aws-sdk', '< 2.0'
-gem 'gaffe'
-gem 'oj'
 gem 'rollbar'
+gem 'sass-rails', '~> 5.0'
+gem 'sprockets-coffee-react'
+gem 'uglifier', '>= 1.3.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-exif-js'
@@ -23,17 +24,13 @@ source 'https://rails-assets.org' do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv-rails'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
 group :production do
