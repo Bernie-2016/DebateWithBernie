@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = Proc.new do |source, request|
+  config.action_controller.asset_host = proc do |_source, request|
     if request && request.subdomain == 'caucusfor'
       'https://caucusfor.berniesanders.com'
     else

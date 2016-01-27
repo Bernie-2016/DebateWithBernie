@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
   def domain_description(image)
     if image
       if caucus_request?
-        "I created a picture to support Bernie Sanders at the Iowa caucus! Make yours to #CaucusForBernie."
+        'I created a picture to support Bernie Sanders at the Iowa caucus! Make yours to #CaucusForBernie.'
       else
-        "I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie."
+        'I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie.'
       end
     else
       "Make your image to #{domain_hashtag}!"

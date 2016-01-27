@@ -19,7 +19,7 @@ class ImagesController < ApplicationController
   def download
     image = Image.find(params[:image_id])
     filename = caucus_request? ? 'caucusforbernie.png' : 'debatewithbernie.png'
-    send_data open(image.file.url) { |f| f.read }, filename: filename
+    send_data open(image.file.url, &:read), filename: filename
   end
 
   private
