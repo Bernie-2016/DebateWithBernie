@@ -59,7 +59,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_controller.asset_host = Proc.new do |source, request|
-    if request.subdomain == 'caucusfor'
+    if request && request.subdomain == 'caucusfor'
       'https://caucusfor.berniesanders.com'
     else
       'https://debatewith.berniesanders.com'
