@@ -21,6 +21,9 @@
         url: @image ? image_share_url(@image.id, host: domain_host) : root_url(host: domain_host),
         image: @image ? @image.file.url : asset_url(domain_image, host: domain_host),
         description: domain_description(@image)
+      },
+      fb: {
+        app_id: ENV['FB_APP_ID']
       }
     ) %>
   </head>
