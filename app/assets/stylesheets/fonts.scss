@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'Freight Sans Book';
-  src: font-url('FreightSans-Book.ttf');
+  src: url(font-path('FreightSans-Book.ttf'));
 }
 
 @font-face {
   font-family: 'Freight Sans Medium';
-  src: font-url('FreightSans-Medium.ttf');
+  src: url(font-path('FreightSans-Medium.ttf'));
 }
 
 @font-face {
   font-family: 'Jubilat Medium';
-  src: font-url('JubilatMedium-Roman.otf');
+  src: url(font-path('JubilatMedium-Roman.otf'));
 }
