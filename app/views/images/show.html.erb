@@ -2,6 +2,6 @@
 <br />
 <div class='share-btns'>
   <%= link_to 'Download', image_download_path(@image), target: '_blank', class: 'btn' %>
-  <%= link_to 'Share on Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{image_share_url(@image.id)}", target: '_blank', class: 'btn' %>
+  <%= link_to 'Share on Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{image_share_url(@image.id, host: domain_host)}", target: '_blank', class: 'btn' %>
   <%= link_to 'Share on Twitter', "https://twitter.com/intent/tweet?text=#{URI::encode("#{domain_description(true)} #{image_share_url(@image.id, host: domain_host)}")}", target: '_blank', class: 'btn' %>
 </div>
