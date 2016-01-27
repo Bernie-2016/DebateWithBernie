@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
 
   def domain_hashtag
     if caucus_request?
-      '#CaucusforBernie'
+      '#CaucusForBernie'
     else
-      '#DebatewithBernie'
+      '#DebateWithBernie'
     end
   end
 
