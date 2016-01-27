@@ -18,6 +18,10 @@ window.Builder = React.createClass
     @addOutline()
 
     $('#slider').slider
+      range: true
+      min: 1
+      max: 25
+      step: 2.5
       slide: (event, ui) =>
         minScale = @state.scale
         range = minScale * 5 - minScale
