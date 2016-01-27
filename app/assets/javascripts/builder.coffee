@@ -10,7 +10,7 @@ window.Builder = React.createClass
     canvas = new fabric.Canvas('canvas')
     canvas.selection = false
     
-    fabric.Image.fromURL '/images/template.png', (img) ->
+    fabric.Image.fromURL @props.template, (img) ->
       canvas.add(img)
       img.set(evented: false)
 

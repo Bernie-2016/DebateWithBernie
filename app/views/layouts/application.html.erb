@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>#DebateWithBernie</title>
+    <title><%= domain_hashtag %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <meta name='viewport' content='width=500'>
-    <meta property='og:title' content='#DebateWithBernie' />
-    <meta name='twitter:card' content='summary_large_image'>
-    <meta name='twitter:site' content='@berniesanders'>
-    <meta name='twitter:title' content='Create your image to #DebateWithBernie!'>
-    <meta name='twitter:description' content='Just upload a photo, import from Facebook, or snap a selfie with your webcam. Then, use our simple editor to position it within the frame, and share it on Facebook and Twitter to #DebateWithBernie!'>
-    <% if @image %>
-      <meta property='og:image' content='<%= @image.file.url %>' />
-      <meta property='og:url' content='<%= image_share_url(@image.id) %>' />
-      <meta property='og:description' content='I created a picture to support Bernie Sanders at the debate! Make yours to #DebateWithBernie.' />
-      <meta name='twitter:image' content='<%= @image.file.url %>'>
-    <% else %>
-      <meta property='og:image' content='<%= asset_url('/images/bernie.png') %>' />
-      <meta property='og:description' content='Make your image to #DebateWithBernie!' />
-      <meta name='twitter:image' content='<%= asset_url('/images/bernie.png') %>' />
-    <% end %>
+
+    <%= meta_tags(
+      title: domain_title,
+      viewport: 'width=500',
+      twitter: {
+        card: 'summary_large_image',
+        site: '@berniesanders',
+        title: "Create your image to #{domain_hashtag}!",
+        description: domain_description(@image),
+        image: @image ? @image.file.url : asset_url(domain_image, host: domain_host)
+      },
+      og: {
+        title: domain_hashtag,
+        url: @image ? image_share_url(@image.id, host: domain_host) : root_url(host: domain_host),
+        image: @image ? @image.file.url : asset_url(domain_image, host: domain_host),
+        description: "Just upload a photo, import from Facebook, or snap a selfie with your webcam. Then, use our simple editor to position it within the frame, and share it on Facebook and Twitter to #{domain_hashtag}!"
+      }
+    ) %>
   </head>
   <body>
     <script>
