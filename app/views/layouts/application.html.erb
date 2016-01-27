@@ -13,14 +13,14 @@
         card: 'summary_large_image',
         site: '@berniesanders',
         title: "Create your image to #{domain_hashtag}!",
-        description: domain_description(@image),
+        description: "Just upload a photo, import from Facebook, or snap a selfie with your webcam. Then, use our simple editor to position it within the frame, and share it on Facebook and Twitter to #{domain_hashtag}!",
         image: @image ? @image.file.url : asset_url(domain_image, host: domain_host)
       },
       og: {
         title: domain_hashtag,
         url: @image ? image_share_url(@image.id, host: domain_host) : root_url(host: domain_host),
         image: @image ? @image.file.url : asset_url(domain_image, host: domain_host),
-        description: "Just upload a photo, import from Facebook, or snap a selfie with your webcam. Then, use our simple editor to position it within the frame, and share it on Facebook and Twitter to #{domain_hashtag}!"
+        description: domain_description(@image)
       }
     ) %>
   </head>
