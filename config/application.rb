@@ -32,12 +32,5 @@ module DebateWithBernie
         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
       }
     }
-
-    config.middleware.insert_before 0, 'Rack::Cors' do
-      allow do
-        origins '*'
-        resource '/assets/**/*', headers: :any, methods: :get
-      end
-    end
   end
 end
