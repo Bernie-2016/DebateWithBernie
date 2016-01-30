@@ -69,16 +69,14 @@ div.gallery {
   }
 }
 
-div.share-btns {
-  margin-bottom: 50px;
-}
-
 a.btn {
+  display: block;
   background-color: $orange;
   color: white;
   text-transform: uppercase;
   text-decoration: none;
   height: 45px;
+  width: 300px;
   font-size: 1.2em;
   font-family: 'Freight Sans Book';
   font-weight: 600;
@@ -88,14 +86,19 @@ a.btn {
   border-radius: 3px;
   border: 0;
   padding: 15px;
-  margin-right: 15px;
-
-  &:last-of-type {
-    margin-right: 0px;
-  }
+  margin: auto;
+  margin-bottom: 25px;
 
   &:hover {
     background-color: $lightorange;
+  }
+
+  &.blue {
+    background-color: $blue;
+
+    &:hover {
+      background-color: lighten($blue, 10%);
+    }
   }
 }
 
@@ -109,23 +112,11 @@ span.or-take {
 
 @media only screen and (max-device-width: 775px) {
   a.btn {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 25px;
     width: 80%;
 
     &.btn-webcam {
       display: none;
     }
-
-    &:last-of-type {
-      margin-right: auto;
-    }
-  }
-
-  div.share-btns {
-    margin-bottom: 25px;
   }
 
   div.gallery {
